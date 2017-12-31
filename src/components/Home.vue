@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <app-indicador v-for="dado in dados" :dados="dado"></app-indicador>
+            <app-indicador v-for="dado in dados" :dados="dado" :key="dado.topRight"></app-indicador>
         </div>
     </div>
 </template>

@@ -1,11 +1,20 @@
 <template>
-    <button type="button" class="list-group-item">
-        {{ nomeJob }}
+    <button type="button" v-on:click="selecionaJob" class="list-group-item">
+        {{ jobObj.nome }}
     </button>
 </template>
 
 <script>
+
     export default {
-        props : ['nomeJob']
+        props : ['jobObj'],
+        methods : {
+            selecionaJob(){
+                const jobName = this.jobObj.nome;
+
+                this.$store.dispatch('selectJob', jobName);
+            }
+        }
+
     }
 </script>

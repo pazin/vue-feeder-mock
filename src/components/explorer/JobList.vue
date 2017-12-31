@@ -4,16 +4,20 @@
             <div class="form">
                 <div class="form-group">
                     <label>Pesquisar Jobs</label>
-                    <input type="text" class="form-control" placeholder="Digite aqui o nome do Job...">
+                    <input 
+                        type="text" 
+                        v-model="stringPesquisa" 
+                        class="form-control" 
+                        v-on:keyup="limparListaItems"
+                        placeholder="Digite aqui o nome do Job...">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="list-group">
-                <app-job-item v-for="job in jobs" :nomeJob="job"></app-job-item>
+                <app-job-item v-for="job in jobsFiltrados()" :jobObj="job" :key="job.nome"></app-job-item>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -22,19 +26,42 @@
     import JobItem from './JobItem.vue';
 
     export default {
-        data(){ 
+        data(){
             return {
-                jobs : [
-                    'job 1',
-                    'job 2',
-                    'job 3',
-                    'job 4'
-                ]
-
+                stringPesquisa : ''
             }
         },
         components : {
             appJobItem : JobItem
+        },
+        methods : {
+            limparListaItems(){
+
+                const jobSelecionado = this.$store.getters.jobSelecionado;
+
+                if (jobSelecionado)
+                    this.$store.dispatch('selectJob', '');
+            },
+            jobsFiltrados(){
+
+                const arrayJobs = this.$store.getters.jobs;
+
+                if (this.stringPesquisa){
+
+                    const jobsFiltrados = arrayJobs
+                        .filter(job => job.nome.includes(this.stringPesquisa));
+
+
+                    return jobsFiltrados;
+                }
+                else 
+                    return arrayJobs;
+            }
+        },
+        computed : {
+            jobs() {
+                return this.$store.getters.jobs;
+            }
         }
     }
 

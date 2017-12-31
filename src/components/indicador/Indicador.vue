@@ -41,13 +41,11 @@
     }
 </script>
 
-<style scoped>
+<style>
 
     span {
         font-size: 2.6em;
     }
-
-    .material-icons.md-36 { font-size: 36px; }
 
 </style>
 

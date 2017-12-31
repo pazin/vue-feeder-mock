@@ -5,7 +5,7 @@
         </div>
 
         <div class="col-xs-6 col-sm-8 altura">
-            lkegal
+            <app-resource-grid></app-resource-grid>
         </div>
     </div>
 </template>
@@ -13,10 +13,12 @@
 
 <script>
     import JobList from './JobList.vue';
+    import ResourceGrid from './ResourceGrid.vue';
 
     export default {
         components : {
-            appJobList : JobList
+            appJobList : JobList,
+            appResourceGrid : ResourceGrid
         }
     }
 
