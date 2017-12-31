@@ -1,5 +1,24 @@
 <template>
-    <div ref="visualization"></div>
+    <div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Grafo
+            </div>
+        </div>
+        <div ref="visualization"></div>
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <div class="pull-left">
+                    Opções
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-default">
+                        ...
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 
@@ -17,7 +36,17 @@
         name : 'GrafoNetwork',
         props : {
             options : {
-                type : Object
+                type : Object,
+                default : () => ({
+                    height : '500px',
+                    layout : {
+                        hierarchical : {
+                            direction : "LR",
+                            sortMethod : "directed"
+                        }
+                    }
+
+                })
             },
             data : {
                 type : Object
@@ -70,7 +99,6 @@
             setSize(width, height){
                 this.network.setSize(width, height);
             }
-
         },
         mounted(){
             const container = this.$refs.visualization;

@@ -33,6 +33,12 @@ const actions = {
         const jobSelected = context.getters.findJobByName(jobName);
 
         context.commit('SET_SELECTED_JOB', jobSelected);
+    },
+    selectJobById: (context, jobId) => {
+
+        const jobSelected = context.getters.findJobById(jobId);
+
+        context.commit('SET_SELECTED_JOB', jobSelected);
     }
 };
 
@@ -41,6 +47,9 @@ const getters = {
 
     findJobByName: (state) => (name) => {
         return state.jobs.find(job => job.nome === name);
+    },
+    findJobById: (state) => (id) => {
+        return state.jobs.find(job => job.id === id);
     },
     jobs : (state) => {
         return state.jobs;
