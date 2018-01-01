@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div class="panel panel-info">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 Grafo
             </div>
         </div>
         <div ref="visualization"></div>
-        <div class="panel panel-primary">
+        <div class="panel panel-info">
             <div class="panel-body">
                 <div class="pull-left">
                     Opções

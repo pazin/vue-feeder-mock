@@ -1,6 +1,6 @@
 <template>
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-        <div class="panel panel-info">
+        <div class="panel panel-info z-depth-1">
             <div class="panel-heading">
                 <h4>{{ recurso }}</h4>
             </div>

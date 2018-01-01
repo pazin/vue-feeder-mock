@@ -37,8 +37,6 @@
 
                 const arestas = this.$store.getters.arestas;
 
-                console.log(arestas);
-
                 let result = {
                     nodes : nodes,
                     edges : arestas
