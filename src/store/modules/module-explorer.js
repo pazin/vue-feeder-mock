@@ -4,7 +4,7 @@ import dadosArestas from '../../dados/dados_arestas_dummy.js';
 
 const state = {
     jobs : [],
-    selectedJob : {},
+    selectedJob : undefined,
     arestas : []
 };
 

@@ -34,4 +34,10 @@
 
     .top5 { margin-top:5px; }
 
+    .btn, .btn:focus, .btn:active {
+        border-color : transparent; 
+        outline: none !important;
+        border-width: 0;
+    }
+
 </style>

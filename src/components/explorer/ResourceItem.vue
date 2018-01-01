@@ -24,10 +24,16 @@
     }
 </script>
 
-<style>
+<style scoped>
     
     .cursorEspecial {
         cursor : pointer;
+    }
+    
+    .btn, .btn:focus, .btn:active {
+        border-color : transparent; 
+        outline: none !important;
+        border-width: 0;
     }
 
 </style>
