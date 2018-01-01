@@ -49,7 +49,8 @@
                 if (this.stringPesquisa){
 
                     const jobsFiltrados = arrayJobs
-                        .filter(job => job.nome.includes(this.stringPesquisa));
+                        .filter(job => job.nome.includes(this.stringPesquisa) ||
+                                       job.descricao.includes(this.stringPesquisa));
 
 
                     return jobsFiltrados;

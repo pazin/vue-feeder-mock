@@ -12,8 +12,8 @@
                     Opções
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-default">
-                        ...
+                    <button class="btn btn-default" v-on:click="mudarHierarquia">
+                        Mudar Hierarquia
                     </button>
                 </div>
             </div>
@@ -27,27 +27,35 @@
     import vis from 'vis';
 
 
+    const defaultOptions = {
+        height : '500px',
+        layout : {
+            hierarchical : {
+                direction : "LR",
+                sortMethod : "directed"
+            }
+        },
+        nodes : {
+            shadow : true,
+            borderWidth : 2
+        }
+    };
+
     const events = [
         'click',
-        'select'
-    ]
+        'select',
+        'hold',
+        'dragStart'
+    ];
 
     export default {
         name : 'GrafoNetwork',
         props : {
-            options : {
-                type : Object,
-                default : () => ({
-                    height : '500px',
-                    layout : {
-                        hierarchical : {
-                            direction : "LR",
-                            sortMethod : "directed"
-                        }
-                    }
-
-                })
-            },
+//   Isso está comentado por causa do hack de mudar hierarquia...
+//            options : {
+//                type : Object,
+//                default : () => (defaultOptions)
+//            },
             data : {
                 type : Object
             }
@@ -80,7 +88,8 @@
         },
         data(){
             return {
-                network : null
+                network : null,
+                hierarquico : true
             }
         },
         methods : {
@@ -98,12 +107,42 @@
             },
             setSize(width, height){
                 this.network.setSize(width, height);
+            },
+            mudarHierarquia(){
+
+                // isso é um hack bem merda... tive que fazer isso porque uma vez que o 
+                // objeto está criado é impossível verificar qual o layout dele...
+
+                this.hierarquico = !this.hierarquico;
+
+                const options = {
+                    height : '500px',
+                    layout : {
+                        hierarchical : {
+                            direction : "LR",
+                            sortMethod : "directed",
+                            enabled : this.hierarquico
+                        }
+                    },
+                    nodes : {
+                        shadow : true,
+                        borderWidth : 2
+                    }
+                };
+
+                events.forEach(eventName => this.network.off(eventName, props => this.$emit(eventName, props)));
+
+                const container = this.$refs.visualization;
+
+                this.network = new vis.Network(container, this.data, options);
+
+                events.forEach(eventName => this.network.on(eventName, props => this.$emit(eventName, props)));
             }
         },
         mounted(){
             const container = this.$refs.visualization;
 
-            this.network = new vis.Network(container, this.data, this.options);
+            this.network = new vis.Network(container, this.data, defaultOptions);
 
             events.forEach(eventName => this.network.on(eventName, props => this.$emit(eventName, props)));
         },

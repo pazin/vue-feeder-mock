@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-xs-6 col-sm-9 col-md-9 col-lg-9 altura">
-            <app-graph :data="dadosGrafo" v-on:click="selecionaJob"></app-graph>
+            <app-graph :data="dadosGrafo" v-on:click="selecionaJob" v-on:dragStart="selecionaJob"></app-graph>
         </div>
         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
             <app-job-detail></app-job-detail>
@@ -57,13 +57,10 @@
                 if (nodesSelecionados){
                     jobId = nodesSelecionados[0];
 
-                    console.log(jobId);
-
                     this.$store.dispatch('selectJobById', jobId);
                 }
             }
         }
-
     }
 
 </script>
@@ -73,5 +70,6 @@
     .altura {
         min-height : 800px;
     }
+
 
 </style>

@@ -1,6 +1,7 @@
 <template>
     <button type="button" v-on:click="selecionaJob" class="list-group-item">
-        {{ jobObj.nome }}
+        <p><b>{{ jobObj.nome }}</b></p>
+        <h6>{{ jobObj.descricao }}</h6>
     </button>
 </template>
 
