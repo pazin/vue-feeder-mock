@@ -2,7 +2,10 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: [
+      'babel-polyfill',
+      './src/main.js'
+  ],
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -48,7 +51,10 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
+      host : '192.168.1.7',
+      port : 8080
+
   },
   performance: {
     hints: false
